@@ -1,5 +1,5 @@
-import { SxProps, TextField } from "@mui/material";
-import { Controller, useFormContext } from "react-hook-form";
+import {SxProps, TextField} from "@mui/material";
+import {Controller, useFormContext} from "react-hook-form";
 
 type TInputProps = {
   name: string;
@@ -12,7 +12,7 @@ type TInputProps = {
   required?: boolean;
 };
 
-const PHInput = ({
+const BDInput = ({
   name,
   label,
   type = "text",
@@ -21,15 +21,15 @@ const PHInput = ({
   sx,
   required,
 }: TInputProps) => {
-  const { control } = useFormContext();
+  const {control} = useFormContext();
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field, fieldState: { error } }) => (
+      render={({field, fieldState: {error}}) => (
         <TextField
           {...field}
-          sx={{ ...sx }}
+          sx={{...sx}}
           label={label}
           type={type}
           variant="outlined"
@@ -45,4 +45,4 @@ const PHInput = ({
   );
 };
 
-export default PHInput;
+export default BDInput;

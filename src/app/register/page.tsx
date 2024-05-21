@@ -1,27 +1,19 @@
 "use client";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
-import assets from "@/assets";
+import {Box, Button, Container, Grid, Stack, Typography} from "@mui/material";
+
 import Link from "next/link";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import { modifyPayload } from "@/utils/modifyPayload";
-import { registerPatient } from "@/services/actions/registerPatient";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { userLogin } from "@/services/actions/userLogin";
-import { storeUserInfo } from "@/services/auth.services";
+import {useForm, SubmitHandler, FieldValues} from "react-hook-form";
+import {modifyPayload} from "@/utils/modifyPayload";
+import {registerPatient} from "@/services/actions/registerPatient";
+import {toast} from "sonner";
+import {useRouter} from "next/navigation";
+import {userLogin} from "@/services/actions/userLogin";
+import {storeUserInfo} from "@/services/auth.services";
 import PHForm from "@/components/Forms/PHForm";
-import PHInput from "@/components/Forms/PHInput";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
+import BDInput from "@/components/Forms/BDInput";
 
 export const patientValidationSchema = z.object({
   name: z.string().min(1, "Please enter your name!"),
@@ -40,10 +32,9 @@ export const validationSchema = z.object({
 export const defaultValues = {
   password: "",
   patient: {
-    name: "",
+    Username: "",
     email: "",
-    contactNumber: "",
-    address: "",
+    password: "",
   },
 };
 
@@ -63,7 +54,7 @@ const RegisterPage = () => {
           email: values.patient.email,
         });
         if (result?.data?.accessToken) {
-          storeUserInfo({ accessToken: result?.data?.accessToken });
+          storeUserInfo({accessToken: result?.data?.accessToken});
           router.push("/dashboard");
         }
       }
@@ -79,8 +70,7 @@ const RegisterPage = () => {
           height: "100vh",
           justifyContent: "center",
           alignItems: "center",
-        }}
-      >
+        }}>
         <Box
           sx={{
             maxWidth: 600,
@@ -89,20 +79,16 @@ const RegisterPage = () => {
             borderRadius: 1,
             p: 4,
             textAlign: "center",
-          }}
-        >
+          }}>
           <Stack
             sx={{
               justifyContent: "center",
               alignItems: "center",
-            }}
-          >
-            <Box>
-              <Image src={assets.svgs.logo} width={50} height={50} alt="logo" />
-            </Box>
+            }}>
+            <Box>BD Travelers</Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Patient Register
+                Register
               </Typography>
             </Box>
           </Stack>
@@ -111,14 +97,13 @@ const RegisterPage = () => {
             <PHForm
               onSubmit={handleRegister}
               resolver={zodResolver(validationSchema)}
-              defaultValues={defaultValues}
-            >
+              defaultValues={defaultValues}>
               <Grid container spacing={2} my={1}>
                 <Grid item md={12}>
-                  <PHInput label="Name" fullWidth={true} name="patient.name" />
+                  <BDInput label="Username" fullWidth={true} name="username" />
                 </Grid>
                 <Grid item md={6}>
-                  <PHInput
+                  <BDInput
                     label="Email"
                     type="email"
                     fullWidth={true}
@@ -126,7 +111,7 @@ const RegisterPage = () => {
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <PHInput
+                  <BDInput
                     label="Password"
                     type="password"
                     fullWidth={true}
@@ -134,18 +119,11 @@ const RegisterPage = () => {
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <PHInput
-                    label="Contact Number"
-                    type="tel"
+                  <BDInput
+                    label="Confirm Password"
+                    type="password"
                     fullWidth={true}
-                    name="patient.contactNumber"
-                  />
-                </Grid>
-                <Grid item md={6}>
-                  <PHInput
-                    label="Address"
-                    fullWidth={true}
-                    name="patient.address"
+                    name="password"
                   />
                 </Grid>
               </Grid>
@@ -154,8 +132,7 @@ const RegisterPage = () => {
                   margin: "10px 0px",
                 }}
                 fullWidth={true}
-                type="submit"
-              >
+                type="submit">
                 Register
               </Button>
               <Typography component="p" fontWeight={300}>

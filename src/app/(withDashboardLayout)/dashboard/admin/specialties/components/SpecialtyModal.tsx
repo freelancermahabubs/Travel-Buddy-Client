@@ -1,21 +1,21 @@
 import PHFileUploader from "@/components/Forms/PHFileUploader";
 import PHForm from "@/components/Forms/PHForm";
-import PHInput from "@/components/Forms/PHInput";
+import BDInput from "@/components/Forms/BDInput";
 import PHModal from "@/components/Shared/PHModal/PHModal";
-import { useCreateSpecialtyMutation } from "@/redux/api/specialtiesApi";
-import { modifyPayload } from "@/utils/modifyPayload";
-import { Button, Grid } from "@mui/material";
+import {useCreateSpecialtyMutation} from "@/redux/api/specialtiesApi";
+import {modifyPayload} from "@/utils/modifyPayload";
+import {Button, Grid} from "@mui/material";
 
 import React from "react";
-import { FieldValues } from "react-hook-form";
-import { toast } from "sonner";
+import {FieldValues} from "react-hook-form";
+import {toast} from "sonner";
 
 type TProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SpecialtyModal = ({ open, setOpen }: TProps) => {
+const SpecialtyModal = ({open, setOpen}: TProps) => {
   const [createSpecialty] = useCreateSpecialtyMutation();
 
   const handleFormSubmit = async (values: FieldValues) => {
@@ -37,13 +37,13 @@ const SpecialtyModal = ({ open, setOpen }: TProps) => {
       <PHForm onSubmit={handleFormSubmit}>
         <Grid container spacing={2}>
           <Grid item md={6}>
-            <PHInput name="title" label="Title" />
+            <BDInput name="title" label="Title" />
           </Grid>
           <Grid item md={6}>
             <PHFileUploader name="file" label="Upload File" />
           </Grid>
         </Grid>
-        <Button sx={{ mt: 1 }} type="submit">
+        <Button sx={{mt: 1}} type="submit">
           Create
         </Button>
       </PHForm>

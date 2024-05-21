@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import {Box, Container, Stack, Typography} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import facebookIcon from "@/assets/landing_page/facebook.png";
@@ -12,12 +12,9 @@ const Footer = () => {
       <Container>
         <Stack direction="row" gap={4} justifyContent="center">
           <Typography color="#fff" component={Link} href="/consultation">
-            Consultation
+            Email: bdtravlers@gmail.com
           </Typography>
-          <Typography color="#fff">Health Plans</Typography>
-          <Typography color="#fff">Medicine</Typography>
-          <Typography color="#fff">Diagnostics</Typography>
-          <Typography color="#fff">NGOs</Typography>
+          <Typography color="#fff">Phone: +8801405330209</Typography>
         </Stack>
 
         <Stack direction="row" gap={2} justifyContent="center" py={3}>
@@ -30,31 +27,28 @@ const Footer = () => {
         <Box
           sx={{
             border: "1px dashed lightgray",
-          }}
-        ></Box>
+          }}></Box>
 
         <Stack
           direction="row"
           gap={2}
           justifyContent="space-between"
           alignItems="center"
-          py={3}
-        >
+          py={3}>
           <Typography component="p" color="white">
-            &copy;2024 Ph HealthCare. All Rights Reserved.
+            &copy;2024 BD Travelers. All Rights Reserved.
           </Typography>
           <Typography
             variant="h4"
             component={Link}
             href="/"
             fontWeight={600}
-            color="white"
-          >
-            P
+            color="white">
+            B
             <Box component="span" color="primary.main">
-              H
+              D
             </Box>{" "}
-            Health Care
+            Travelers
           </Typography>
           <Typography component="p" color="white">
             Privacy Policy! Terms & Conditions

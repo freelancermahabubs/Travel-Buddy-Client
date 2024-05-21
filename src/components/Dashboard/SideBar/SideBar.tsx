@@ -1,6 +1,5 @@
 import {Box, List, Stack, Typography} from "@mui/material";
-import Image from "next/image";
-import assets from "@/assets";
+
 import Link from "next/link";
 import {drawerItems} from "@/utils/drawerItems";
 import {UserRole} from "@/types";
@@ -29,7 +28,8 @@ const SideBar = () => {
         gap={1}
         component={Link}
         href="/">
-        <Image src={assets.svgs.logo} width={40} height={40} alt="logo" />
+        {/* <Image src={assets.svgs.logo} width={40} height={40} alt="logo" /> */}
+        logo
         <Typography
           variant="h6"
           component="h1"

@@ -1,17 +1,17 @@
 "use client";
 
 import PHForm from "@/components/Forms/PHForm";
-import PHInput from "@/components/Forms/PHInput";
+import BDInput from "@/components/Forms/BDInput";
 import PHSelectField from "@/components/Forms/PHSelectField";
 import {
   useGetDoctorQuery,
   useUpdateDoctorMutation,
 } from "@/redux/api/doctorApi";
-import { Gender } from "@/types";
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { FieldValues } from "react-hook-form";
-import { toast } from "sonner";
+import {Gender} from "@/types";
+import {Box, Button, Grid, Typography} from "@mui/material";
+import {useRouter} from "next/navigation";
+import {FieldValues} from "react-hook-form";
+import {toast} from "sonner";
 
 type TParams = {
   params: {
@@ -19,13 +19,13 @@ type TParams = {
   };
 };
 
-const DoctorUpdatePage = ({ params }: TParams) => {
+const DoctorUpdatePage = ({params}: TParams) => {
   //   console.log(params?.doctorId);
   const router = useRouter();
 
   const id = params?.doctorId;
 
-  const { data, isLoading } = useGetDoctorQuery(id);
+  const {data, isLoading} = useGetDoctorQuery(id);
   const [updateDoctor] = useUpdateDoctorMutation();
   //   console.log(data);
 
@@ -36,7 +36,7 @@ const DoctorUpdatePage = ({ params }: TParams) => {
     // console.log({ id: values.id, body: values });
 
     try {
-      const res = await updateDoctor({ id: values.id, body: values }).unwrap();
+      const res = await updateDoctor({id: values.id, body: values}).unwrap();
       if (res?.id) {
         toast.success("Doctor Updated Successfully!!!");
         router.push("/dashboard/admin/doctors");
@@ -69,58 +69,52 @@ const DoctorUpdatePage = ({ params }: TParams) => {
       ) : (
         <PHForm
           onSubmit={handleFormSubmit}
-          defaultValues={data && defaultValues}
-        >
-          <Grid container spacing={2} sx={{ my: 5 }}>
+          defaultValues={data && defaultValues}>
+          <Grid container spacing={2} sx={{my: 5}}>
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
-                name="name"
-                label="Name"
-                fullWidth={true}
-                sx={{ mb: 2 }}
-              />
+              <BDInput name="name" label="Name" fullWidth={true} sx={{mb: 2}} />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
+              <BDInput
                 name="email"
                 type="email"
                 label="Email"
                 fullWidth={true}
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
 
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
+              <BDInput
                 name="contactNumber"
                 label="Contract Number"
                 fullWidth={true}
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
+              <BDInput
                 name="address"
                 label="Address"
                 fullWidth={true}
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
+              <BDInput
                 name="registrationNumber"
                 label="Registration Number"
                 fullWidth={true}
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
+              <BDInput
                 name="experience"
                 type="number"
                 label="Experience"
                 fullWidth={true}
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
@@ -128,41 +122,41 @@ const DoctorUpdatePage = ({ params }: TParams) => {
                 items={Gender}
                 name="gender"
                 label="Gender"
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
+              <BDInput
                 name="apointmentFee"
                 type="number"
                 label="ApointmentFee"
                 fullWidth={true}
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
+              <BDInput
                 name="qualification"
                 label="Qualification"
                 fullWidth={true}
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
 
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
+              <BDInput
                 name="currentWorkingPlace"
                 label="Current Working Place"
                 fullWidth={true}
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={4}>
-              <PHInput
+              <BDInput
                 name="designation"
                 label="Designation"
                 fullWidth={true}
-                sx={{ mb: 2 }}
+                sx={{mb: 2}}
               />
             </Grid>
           </Grid>
