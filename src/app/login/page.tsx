@@ -94,7 +94,7 @@ const LoginPage = () => {
                 <Grid item md={6}>
                   <BDInput
                     name="email"
-                    label="Email"
+                    label="Username or Email Address"
                     type="email"
                     fullWidth={true}
                   />
