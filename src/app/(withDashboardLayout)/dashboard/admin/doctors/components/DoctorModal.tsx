@@ -1,7 +1,7 @@
 import {Button, Grid} from "@mui/material";
 import {Gender} from "@/types/common";
 import {FieldValues} from "react-hook-form";
-import PHForm from "@/components/Forms/PHForm";
+import BDForm from "@/components/Forms/BDForm";
 import BDInput from "@/components/Forms/BDInput";
 import PHSelectField from "@/components/Forms/PHSelectField";
 import PHFullScreenModal from "@/components/Shared/PHModal/PHFullScreenModal";
@@ -53,7 +53,7 @@ const DoctorModal = ({open, setOpen}: TProps) => {
 
   return (
     <PHFullScreenModal open={open} setOpen={setOpen} title="Create New Doctor">
-      <PHForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
+      <BDForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
         <Grid container spacing={2} sx={{my: 5}}>
           <Grid item xs={12} sm={12} md={4}>
             <BDInput
@@ -161,7 +161,7 @@ const DoctorModal = ({open, setOpen}: TProps) => {
         </Grid>
 
         <Button type="submit">Create</Button>
-      </PHForm>
+      </BDForm>
     </PHFullScreenModal>
   );
 };

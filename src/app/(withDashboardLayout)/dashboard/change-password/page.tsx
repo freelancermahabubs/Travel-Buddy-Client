@@ -1,6 +1,6 @@
 "use client";
 
-import PHForm from "@/components/Forms/PHForm";
+import BDForm from "@/components/Forms/BDForm";
 import BDInput from "@/components/Forms/BDInput";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Box, Button, Grid, Stack, Typography} from "@mui/material";
@@ -65,7 +65,7 @@ const ChangePassword = () => {
           Change password
         </Typography>
       </Stack>
-      <PHForm
+      <BDForm
         onSubmit={onSubmit}
         defaultValues={{oldPassword: "", newPassword: ""}}
         resolver={zodResolver(validationSchema)}>
@@ -93,7 +93,7 @@ const ChangePassword = () => {
         <Button type="submit" sx={{width: "100%", my: 2}}>
           change Password
         </Button>
-      </PHForm>
+      </BDForm>
     </Box>
   );
 };

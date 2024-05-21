@@ -4,7 +4,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Alert, Box, Button, Grid, Stack, Typography} from "@mui/material";
 import {z} from "zod";
 import KeyIcon from "@mui/icons-material/Key";
-import PHForm from "@/components/Forms/PHForm";
+import BDForm from "@/components/Forms/BDForm";
 import BDInput from "@/components/Forms/BDInput";
 import {FieldValues} from "react-hook-form";
 import {useForgotPasswordMutation} from "@/redux/api/authApi";
@@ -71,7 +71,7 @@ const ForgotPassword = () => {
         )}
 
         {!isSuccess && (
-          <PHForm
+          <BDForm
             onSubmit={onSubmit}
             defaultValues={{email: ""}}
             resolver={zodResolver(validationSchema)}>
@@ -90,7 +90,7 @@ const ForgotPassword = () => {
             <Button type="submit" sx={{width: "100%", my: 2}}>
               forgot Password
             </Button>
-          </PHForm>
+          </BDForm>
         )}
       </Box>
     </Stack>

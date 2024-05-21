@@ -7,7 +7,7 @@ import {
   useGetDoctorQuery,
   useUpdateDoctorMutation,
 } from "@/redux/api/doctorApi";
-import PHForm from "@/components/Forms/PHForm";
+import BDForm from "@/components/Forms/BDForm";
 import {FieldValues} from "react-hook-form";
 import {Button, Grid} from "@mui/material";
 import BDInput from "@/components/Forms/BDInput";
@@ -104,7 +104,7 @@ const ProfileUpdateModal = ({open, setOpen, id}: TProps) => {
 
   return (
     <PHFullScreenModal open={open} setOpen={setOpen} title="Update Profile">
-      <PHForm
+      <BDForm
         onSubmit={submitHandler}
         defaultValues={doctorData}
         resolver={zodResolver(validationSchema)}>
@@ -204,7 +204,7 @@ const ProfileUpdateModal = ({open, setOpen, id}: TProps) => {
         <Button type="submit" disabled={updating}>
           Save
         </Button>
-      </PHForm>
+      </BDForm>
     </PHFullScreenModal>
   );
 };

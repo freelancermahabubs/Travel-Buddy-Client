@@ -1,6 +1,6 @@
 "use client";
 
-import PHForm from "@/components/Forms/PHForm";
+import BDForm from "@/components/Forms/BDForm";
 import BDInput from "@/components/Forms/BDInput";
 import PHSelectField from "@/components/Forms/PHSelectField";
 import {
@@ -67,7 +67,7 @@ const DoctorUpdatePage = ({params}: TParams) => {
       {isLoading ? (
         "Loading..."
       ) : (
-        <PHForm
+        <BDForm
           onSubmit={handleFormSubmit}
           defaultValues={data && defaultValues}>
           <Grid container spacing={2} sx={{my: 5}}>
@@ -162,7 +162,7 @@ const DoctorUpdatePage = ({params}: TParams) => {
           </Grid>
 
           <Button type="submit">Update</Button>
-        </PHForm>
+        </BDForm>
       )}
     </Box>
   );

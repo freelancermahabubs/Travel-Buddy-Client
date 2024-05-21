@@ -15,12 +15,7 @@ type TFormProps = {
   onSubmit: SubmitHandler<FieldValues>;
 } & TFormConfig;
 
-const PHForm = ({
-  children,
-  onSubmit,
-  resolver,
-  defaultValues,
-}: TFormProps) => {
+const BDForm = ({children, onSubmit, resolver, defaultValues}: TFormProps) => {
   const formConfig: TFormConfig = {};
 
   if (resolver) {
@@ -32,7 +27,7 @@ const PHForm = ({
   }
 
   const methods = useForm(formConfig);
-  const { handleSubmit, reset } = methods;
+  const {handleSubmit, reset} = methods;
 
   const submit: SubmitHandler<FieldValues> = (data) => {
     // console.log(data);
@@ -47,4 +42,4 @@ const PHForm = ({
   );
 };
 
-export default PHForm;
+export default BDForm;

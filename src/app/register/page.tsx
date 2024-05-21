@@ -3,36 +3,33 @@ import {Box, Button, Container, Grid, Stack, Typography} from "@mui/material";
 
 import Link from "next/link";
 import {useForm, SubmitHandler, FieldValues} from "react-hook-form";
-import {modifyPayload} from "@/utils/modifyPayload";
-import {registerPatient} from "@/services/actions/registerPatient";
+
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
 import {userLogin} from "@/services/actions/userLogin";
 import {storeUserInfo} from "@/services/auth.services";
-import PHForm from "@/components/Forms/PHForm";
 
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import BDInput from "@/components/Forms/BDInput";
+import BDForm from "@/components/Forms/BDForm";
 
-export const patientValidationSchema = z.object({
-  name: z.string().min(1, "Please enter your name!"),
+import {useUserCreateMutation} from "@/redux/api/userApi";
+
+export const userValidationSchema = z.object({
+  username: z.string().min(1, "Please enter your username!"),
   email: z.string().email("Please enter a valid email address!"),
-  contactNumber: z
-    .string()
-    .regex(/^\d{11}$/, "Please provide a valid phone number!"),
-  address: z.string().min(1, "Please enter your address!"),
 });
 
 export const validationSchema = z.object({
   password: z.string().min(6, "Must be at least 6 characters"),
-  patient: patientValidationSchema,
+  user: userValidationSchema,
 });
 
 export const defaultValues = {
   password: "",
-  patient: {
-    Username: "",
+  user: {
+    username: "",
     email: "",
     password: "",
   },
@@ -40,18 +37,20 @@ export const defaultValues = {
 
 const RegisterPage = () => {
   const router = useRouter();
-
+  const [userCreate, {isLoading}] = useUserCreateMutation();
   const handleRegister = async (values: FieldValues) => {
-    const data = modifyPayload(values);
-    // console.log(data);
+    const data = values;
+
     try {
-      const res = await registerPatient(data);
-      // console.log(res);
+      const res = await userCreate(data);
+      console.log(res);
+
       if (res?.data?.id) {
         toast.success(res?.message);
         const result = await userLogin({
           password: values.password,
-          email: values.patient.email,
+          email: values?.user.email,
+          username: values?.user.username,
         });
         if (result?.data?.accessToken) {
           storeUserInfo({accessToken: result?.data?.accessToken});
@@ -94,20 +93,24 @@ const RegisterPage = () => {
           </Stack>
 
           <Box>
-            <PHForm
+            <BDForm
               onSubmit={handleRegister}
               resolver={zodResolver(validationSchema)}
               defaultValues={defaultValues}>
               <Grid container spacing={2} my={1}>
                 <Grid item md={12}>
-                  <BDInput label="Username" fullWidth={true} name="username" />
+                  <BDInput
+                    label="Username"
+                    fullWidth={true}
+                    name="user.username"
+                  />
                 </Grid>
                 <Grid item md={6}>
                   <BDInput
                     label="Email"
                     type="email"
                     fullWidth={true}
-                    name="patient.email"
+                    name="user.email"
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -133,12 +136,12 @@ const RegisterPage = () => {
                 }}
                 fullWidth={true}
                 type="submit">
-                Register
+                {isLoading ? "Loading..." : "Register"}
               </Button>
               <Typography component="p" fontWeight={300}>
                 Do you already have an account? <Link href="/login">Login</Link>
               </Typography>
-            </PHForm>
+            </BDForm>
           </Box>
         </Box>
       </Stack>

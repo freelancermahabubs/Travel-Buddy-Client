@@ -1,5 +1,5 @@
 import PHFileUploader from "@/components/Forms/PHFileUploader";
-import PHForm from "@/components/Forms/PHForm";
+import BDForm from "@/components/Forms/BDForm";
 import BDInput from "@/components/Forms/BDInput";
 import PHModal from "@/components/Shared/PHModal/PHModal";
 import {useCreateSpecialtyMutation} from "@/redux/api/specialtiesApi";
@@ -34,7 +34,7 @@ const SpecialtyModal = ({open, setOpen}: TProps) => {
 
   return (
     <PHModal open={open} setOpen={setOpen} title="Create A New Specialty">
-      <PHForm onSubmit={handleFormSubmit}>
+      <BDForm onSubmit={handleFormSubmit}>
         <Grid container spacing={2}>
           <Grid item md={6}>
             <BDInput name="title" label="Title" />
@@ -46,7 +46,7 @@ const SpecialtyModal = ({open, setOpen}: TProps) => {
         <Button sx={{mt: 1}} type="submit">
           Create
         </Button>
-      </PHForm>
+      </BDForm>
     </PHModal>
   );
 };

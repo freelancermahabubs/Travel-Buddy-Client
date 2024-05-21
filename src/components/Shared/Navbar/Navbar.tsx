@@ -25,7 +25,12 @@ const Navbar = () => {
           direction="row"
           justifyContent="space-between"
           alignItems="center">
-          <Typography variant="h4" component={Link} href="/" fontWeight={600}>
+          <Typography
+            variant="h4"
+            component={Link}
+            href="/"
+            fontWeight={600}
+            color="#ffffff">
             B
             <Box component="span" color="#ffffff">
               D

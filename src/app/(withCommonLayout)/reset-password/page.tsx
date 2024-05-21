@@ -6,7 +6,7 @@ import {FieldValues} from "react-hook-form";
 import {z} from "zod";
 import KeyIcon from "@mui/icons-material/Key";
 import BDInput from "@/components/Forms/BDInput";
-import PHForm from "@/components/Forms/PHForm";
+import BDForm from "@/components/Forms/BDForm";
 import {useSearchParams} from "next/navigation";
 import {authApi, useResetPasswordMutation} from "@/redux/api/authApi";
 import {useEffect} from "react";
@@ -77,7 +77,7 @@ const ResetPassword = () => {
           Reset password
         </Typography>
       </Stack>
-      <PHForm
+      <BDForm
         onSubmit={onSubmit}
         defaultValues={{newPassword: ""}}
         resolver={zodResolver(validationSchema)}>
@@ -96,7 +96,7 @@ const ResetPassword = () => {
         <Button type="submit" sx={{width: "100%", my: 2}}>
           Reset Password
         </Button>
-      </PHForm>
+      </BDForm>
     </Box>
   );
 };

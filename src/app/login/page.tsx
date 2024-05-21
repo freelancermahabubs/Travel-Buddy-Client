@@ -7,7 +7,7 @@ import {userLogin} from "@/services/actions/userLogin";
 import {storeUserInfo} from "@/services/auth.services";
 import {toast} from "sonner";
 
-import PHForm from "@/components/Forms/PHForm";
+import BDForm from "@/components/Forms/BDForm";
 import BDInput from "@/components/Forms/BDInput";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -83,7 +83,7 @@ const LoginPage = () => {
           )}
 
           <Box>
-            <PHForm
+            <BDForm
               onSubmit={handleLogin}
               resolver={zodResolver(validationSchema)}
               defaultValues={{
@@ -134,7 +134,7 @@ const LoginPage = () => {
                 Don&apos;t have an account?{" "}
                 <Link href="/register">Create an account</Link>
               </Typography>
-            </PHForm>
+            </BDForm>
           </Box>
         </Box>
       </Stack>

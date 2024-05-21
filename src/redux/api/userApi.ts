@@ -1,8 +1,16 @@
-import { baseApi } from "./baseApi";
-import { tagTypes } from "../tag-types";
+import {baseApi} from "./baseApi";
+import {tagTypes} from "../tag-types";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
+    userCreate: build.mutation({
+      query: (userData) => ({
+        url: "/user/new",
+        method: "POST",
+        data: userData,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
     getSingleUser: build.query({
       query: () => ({
         url: "/user/me",
@@ -13,4 +21,4 @@ export const userApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetSingleUserQuery } = userApi;
+export const {useGetSingleUserQuery, useUserCreateMutation} = userApi;

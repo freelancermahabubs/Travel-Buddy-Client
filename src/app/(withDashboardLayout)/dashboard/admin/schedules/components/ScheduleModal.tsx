@@ -1,20 +1,20 @@
 import PHDatePicker from "@/components/Forms/PHDatePicker";
-import PHForm from "@/components/Forms/PHForm";
+import BDForm from "@/components/Forms/BDForm";
 import PHTimePicker from "@/components/Forms/PHTimePicker";
 import PHModal from "@/components/Shared/PHModal/PHModal";
-import { useCreateScheduleMutation } from "@/redux/api/scheduleApi";
-import { dateFormatter } from "@/utils/dateFormatter";
-import { timeFormatter } from "@/utils/timeFormatter";
-import { Button, Grid } from "@mui/material";
-import { FieldValues } from "react-hook-form";
-import { toast } from "sonner";
+import {useCreateScheduleMutation} from "@/redux/api/scheduleApi";
+import {dateFormatter} from "@/utils/dateFormatter";
+import {timeFormatter} from "@/utils/timeFormatter";
+import {Button, Grid} from "@mui/material";
+import {FieldValues} from "react-hook-form";
+import {toast} from "sonner";
 
 type TProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ScheduleModal = ({ open, setOpen }: TProps) => {
+const ScheduleModal = ({open, setOpen}: TProps) => {
   const [createSchedule] = useCreateScheduleMutation();
 
   const handleFormSubmit = async (values: FieldValues) => {
@@ -38,8 +38,8 @@ const ScheduleModal = ({ open, setOpen }: TProps) => {
 
   return (
     <PHModal open={open} setOpen={setOpen} title="Create Schedule">
-      <PHForm onSubmit={handleFormSubmit}>
-        <Grid container spacing={2} sx={{ width: "400px" }}>
+      <BDForm onSubmit={handleFormSubmit}>
+        <Grid container spacing={2} sx={{width: "400px"}}>
           <Grid item md={12}>
             <PHDatePicker name="startDate" label="Start Date" />
           </Grid>
@@ -53,10 +53,10 @@ const ScheduleModal = ({ open, setOpen }: TProps) => {
             <PHTimePicker name="endTime" label="End Time" />
           </Grid>
         </Grid>
-        <Button type="submit" sx={{ mt: 1 }}>
+        <Button type="submit" sx={{mt: 1}}>
           Create
         </Button>
-      </PHForm>
+      </BDForm>
     </PHModal>
   );
 };
