@@ -43,15 +43,15 @@ const RegisterPage = () => {
 
     try {
       const res = await userCreate(data);
-      console.log(res);
 
-      if (res?.data?.id) {
-        toast.success(res?.message);
+      if (res?.data?.data?.id) {
+        toast.success(res?.data?.message);
         const result = await userLogin({
           password: values.password,
           email: values?.user.email,
           username: values?.user.username,
         });
+        console.log(result);
         if (result?.data?.accessToken) {
           storeUserInfo({accessToken: result?.data?.accessToken});
           router.push("/dashboard");

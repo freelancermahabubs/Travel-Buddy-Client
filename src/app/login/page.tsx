@@ -12,25 +12,28 @@ import BDInput from "@/components/Forms/BDInput";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useState} from "react";
+import {useRouter} from "next/navigation";
 
 export const validationSchema = z.object({
   email: z.string().email("Please enter a valid email address!"),
+
   password: z.string().min(6, "Must be at least 6 characters"),
 });
 
 const LoginPage = () => {
+  const router = useRouter();
   const [error, setError] = useState("");
 
   const handleLogin = async (values: FieldValues) => {
     // console.log(values);
     try {
       const res = await userLogin(values);
+
       if (res?.data?.accessToken) {
-        toast.success(res?.message);
+        toast.success("Login success");
         storeUserInfo({accessToken: res?.data?.accessToken});
-        // router.push("/dashboard");
       } else {
-        setError(res.message);
+        setError(res?.data?.message);
         // console.log(res);
       }
     } catch (err: any) {

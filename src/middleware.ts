@@ -6,14 +6,9 @@ import type {NextRequest} from "next/server";
 type Role = keyof typeof roleBasedPrivateRoutes;
 
 const AuthRoutes = ["/login", "/register"];
-const commonPrivateRoutes = [
-  "/dashboard",
-  "/dashboard/change-password",
-  "/doctors",
-];
+const commonPrivateRoutes = ["/dashboard", "/dashboard/change-password"];
 const roleBasedPrivateRoutes = {
-  PATIENT: [/^\/dashboard\/patient/],
-  DOCTOR: [/^\/dashboard\/doctor/],
+  USER: [/^\/dashboard\/user/],
   ADMIN: [/^\/dashboard\/admin/],
   SUPER_ADMIN: [/^\/dashboard\/super-admin/],
 };
@@ -31,8 +26,6 @@ export function middleware(request: NextRequest) {
     }
   }
 
- 
-
   if (
     accessToken &&
     (commonPrivateRoutes.includes(pathname) ||
@@ -49,9 +42,7 @@ export function middleware(request: NextRequest) {
 
   const role = decodedData?.role;
 
-  // if (role === 'ADMIN' && pathname.startsWith('/dashboard/admin')) {
-  //    return NextResponse.next();
-  // }
+  
 
   if (role && roleBasedPrivateRoutes[role as Role]) {
     const routes = roleBasedPrivateRoutes[role as Role];
@@ -64,5 +55,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/login", "/register", "/dashboard/:page*", "/doctors/:page*"],
+  matcher: ["/login", "/register", "/dashboard/:page*"],
 };
