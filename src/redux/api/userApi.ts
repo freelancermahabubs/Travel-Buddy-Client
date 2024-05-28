@@ -11,6 +11,13 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.user],
     }),
+    getAllUser: build.query({
+      query: () => ({
+        url: "/user",
+        method: "GET",
+      }),
+      providesTags: [tagTypes.user],
+    }),
     getSingleUser: build.query({
       query: () => ({
         url: "/user/me",
@@ -18,7 +25,19 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.user],
     }),
+    deleteUser: build.mutation({
+      query: (id) => ({
+        url: `/user/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
-export const {useGetSingleUserQuery, useUserCreateMutation} = userApi;
+export const {
+  useGetSingleUserQuery,
+  useUserCreateMutation,
+  useGetAllUserQuery,
+  useDeleteUserMutation,
+} = userApi;

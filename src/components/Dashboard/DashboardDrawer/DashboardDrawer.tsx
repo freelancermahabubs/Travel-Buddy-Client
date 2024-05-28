@@ -10,10 +10,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import SideBar from "../SideBar/SideBar";
-import { Avatar, Badge, Stack } from "@mui/material";
+import {Avatar, Badge, Stack} from "@mui/material";
 import AccountMenu from "../AccountMenu/AccountMenu";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import { useGetSingleUserQuery } from "@/redux/api/userApi";
+import {useGetSingleUserQuery} from "@/redux/api/userApi";
 
 const drawerWidth = 240;
 
@@ -40,32 +40,30 @@ export default function DashboardDrawer({
     }
   };
 
-  const { data, isLoading } = useGetSingleUserQuery({});
+  const {data, isLoading} = useGetSingleUserQuery({});
   // console.log(data);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{display: "flex"}}>
       <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          width: {sm: `calc(100% - ${drawerWidth}px)`},
+          ml: {sm: `${drawerWidth}px`},
           background: "#F4F7FE",
           boxShadow: 0,
           borderBottom: "1px solid #ddd",
           py: 1,
-        }}
-      >
+        }}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon sx={{ color: "primary.main" }} />
+            sx={{mr: 2, display: {sm: "none"}}}>
+            <MenuIcon sx={{color: "primary.main"}} />
           </IconButton>
           <Box
             sx={{
@@ -73,29 +71,26 @@ export default function DashboardDrawer({
               alignItems: "center",
               justifyContent: "space-between",
               width: "100%",
-            }}
-          >
+            }}>
             <Box>
               <Typography
                 variant="body2"
                 noWrap
                 component="div"
-                sx={{ color: "rgba(11, 17, 52, 0.6)" }}
-              >
+                sx={{color: "rgba(11, 17, 52, 0.6)"}}>
                 Hi, {isLoading ? "Loading..." : data?.name},
               </Typography>
               <Typography
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ color: "primary.main" }}
-              >
-                Welcome to PH Health Care!
+                sx={{color: "primary.main"}}>
+                Welcome to BD Travelers!
               </Typography>
             </Box>
             <Stack direction="row" gap={3}>
               <Badge badgeContent={1} color="primary">
-                <IconButton sx={{ background: "#ffffff" }}>
+                <IconButton sx={{background: "#ffffff"}}>
                   <NotificationsNoneIcon color="action" />
                 </IconButton>
               </Badge>
@@ -107,9 +102,8 @@ export default function DashboardDrawer({
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
-      >
+        sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
+        aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           variant="temporary"
@@ -120,26 +114,24 @@ export default function DashboardDrawer({
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: {xs: "block", sm: "none"},
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
             },
-          }}
-        >
+          }}>
           <SideBar />
         </Drawer>
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: "none", sm: "block" },
+            display: {xs: "none", sm: "block"},
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
             },
           }}
-          open
-        >
+          open>
           <SideBar />
         </Drawer>
       </Box>
@@ -148,9 +140,8 @@ export default function DashboardDrawer({
         sx={{
           flexGrow: 1,
           p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
+          width: {sm: `calc(100% - ${drawerWidth}px)`},
+        }}>
         <Toolbar />
         <Box>{children}</Box>
       </Box>

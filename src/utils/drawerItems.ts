@@ -12,8 +12,7 @@ import TryIcon from "@mui/icons-material/Try";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
 import BookOnlineIcon from "@mui/icons-material/BookOnline";
-import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+
 
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleMenus: DrawerItem[] = [];
@@ -32,7 +31,7 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
   ];
 
   switch (role) {
-    case USER_ROLE.SUPER_ADMIN:
+    case USER_ROLE.ADMIN:
       roleMenus.push(
         {
           title: "Dashboard",
@@ -43,16 +42,6 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "Manage Users",
           path: `${role}/manage-users`,
           icon: GroupIcon,
-        }
-      );
-      break;
-
-    case USER_ROLE.ADMIN:
-      roleMenus.push(
-        {
-          title: "Dashboard",
-          path: `${role}`,
-          icon: DashboardIcon,
         },
         {
           title: "Specialties",
@@ -78,46 +67,6 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "Reviews",
           path: `${role}/reviews`,
           icon: ReviewsIcon,
-        }
-      );
-      break;
-
-    case USER_ROLE.DOCTOR:
-      roleMenus.push(
-        {
-          title: "Dashboard",
-          path: `${role}`,
-          icon: DashboardIcon,
-        },
-        {
-          title: "Schedules",
-          path: `${role}/schedules`,
-          icon: CalendarMonthIcon,
-        },
-        {
-          title: "Appointments",
-          path: `${role}/appointment`,
-          icon: BookOnlineIcon,
-        }
-      );
-      break;
-
-    case USER_ROLE.PATIENT:
-      roleMenus.push(
-        {
-          title: "Appointments",
-          path: `${role}/appointments`,
-          icon: BookOnlineIcon,
-        },
-        {
-          title: "Prescriptions",
-          path: `${role}/prescriptions`,
-          icon: ReceiptLongIcon,
-        },
-        {
-          title: "Payment History",
-          path: `${role}/payment-history`,
-          icon: AttachMoneyIcon,
         }
       );
       break;

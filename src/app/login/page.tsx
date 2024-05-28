@@ -12,7 +12,6 @@ import BDInput from "@/components/Forms/BDInput";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useState} from "react";
-import {useRouter} from "next/navigation";
 
 export const validationSchema = z.object({
   email: z.string().email("Please enter a valid email address!"),
@@ -21,7 +20,6 @@ export const validationSchema = z.object({
 });
 
 const LoginPage = () => {
-  const router = useRouter();
   const [error, setError] = useState("");
 
   const handleLogin = async (values: FieldValues) => {
@@ -97,7 +95,7 @@ const LoginPage = () => {
                 <Grid item md={6}>
                   <BDInput
                     name="email"
-                    label="Username or Email Address"
+                    label=" Email Address"
                     type="email"
                     fullWidth={true}
                   />

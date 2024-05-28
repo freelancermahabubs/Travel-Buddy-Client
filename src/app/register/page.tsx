@@ -49,9 +49,8 @@ const RegisterPage = () => {
         const result = await userLogin({
           password: values.password,
           email: values?.user.email,
-          username: values?.user.username,
         });
-        console.log(result);
+
         if (result?.data?.accessToken) {
           storeUserInfo({accessToken: result?.data?.accessToken});
           router.push("/dashboard");

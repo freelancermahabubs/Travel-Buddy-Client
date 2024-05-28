@@ -1,6 +1,7 @@
 import HeroSection from "@/components/UI/HomePage/HeroSection/HeroSection";
 
-import TopRatedDoctors from "@/components/UI/HomePage/TopRatedDoctors/TopRatedDoctors";
+
+import TopTravels from "@/components/UI/HomePage/TopTravels/TopTravels";
 
 import SearchBar from "@/components/UI/SearchBar/SearchBar";
 
@@ -10,7 +11,7 @@ const HomePage = () => {
       <HeroSection />
       <SearchBar />
 
-      <TopRatedDoctors />
+      <TopTravels />
     </>
   );
 };

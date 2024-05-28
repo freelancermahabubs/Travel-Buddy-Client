@@ -13,7 +13,7 @@ import {useRouter} from "next/navigation";
 import {logoutUser} from "@/services/actions/logoutUser";
 
 const validationSchema = z.object({
-  oldPassword: z.string().min(6, "Must be at least 6 characters long"),
+  currentPassword: z.string().min(6, "Must be at least 6 characters long"),
   newPassword: z.string().min(6, "Must be at least 6 characters long"),
 });
 
@@ -24,7 +24,7 @@ const ChangePassword = () => {
     try {
       const res = await changePassword(values);
 
-      if ("data" in res && res.data.status === 200) {
+      if ("data" in res && res?.data?.data?.status === 200) {
         logoutUser(router);
         toast.success("Password Changed Successfully");
       } else {
@@ -72,9 +72,9 @@ const ChangePassword = () => {
         <Grid>
           <Grid item xs={12} sm={12} md={6}>
             <BDInput
-              name="oldPassword"
+              name="currentPassword"
               type="password"
-              label="Old Password"
+              label="Current Password"
               fullWidth
               sx={{mb: 2}}
             />
