@@ -32,7 +32,7 @@ const TopTravels = () => {
   const {data: trips, isLoading} = useGetAllTripsQuery({...query});
   const meta = trips?.meta;
  
-console.log(trips)
+
   return (
     <Box
       sx={{
@@ -58,7 +58,7 @@ console.log(trips)
       ) : (
         <Container sx={{margin: "30px auto"}}>
           <Grid container spacing={2}>
-            {trips?.trips?.slice(0, 10).map((trip: any) => (
+            {trips?.trips?.slice(0, 10)?.map((trip: any) => (
               <Grid item key={trip?.id} md={4}>
                 <Link href={`/travel/${trip?.id}`}>
                   {" "}
